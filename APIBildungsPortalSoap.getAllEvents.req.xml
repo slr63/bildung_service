@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns1="http://www.lsb-niedersachsen.de/bildungsportal/api/">
+ <SOAP-ENV:Body>
+   <ns1:getAllEvents>
+    <ns1:filter>
+     <ns1:OrganizerId>0</ns1:OrganizerId>
+     <ns1:VenueId>0</ns1:VenueId>
+     <ns1:KSBNumber>28</ns1:KSBNumber>
+     <ns1:LSBNumber>03</ns1:LSBNumber>
+     <ns1:SportRegion>3</ns1:SportRegion>
+     <ns1:OnlyVisible>false</ns1:OnlyVisible>
+     <ns1:OnlyWithEducationalLeave>false</ns1:OnlyWithEducationalLeave>
+     <ns1:Title>O'Raily</ns1:Title>
+     <ns1:TitleSearchType>Exact</ns1:TitleSearchType>
+     <ns1:TitleAddition>Ä</ns1:TitleAddition>
+     <ns1:TitleAdditionSearchType>Start</ns1:TitleAdditionSearchType>
+     <ns1:Subtitle>ÜL/C</ns1:Subtitle>
+     <ns1:SubtitleSearchType>Middle</ns1:SubtitleSearchType>
+     <ns1:SubtitleAddition>Addition</ns1:SubtitleAddition>
+     <ns1:SubtitleAdditionSearchType>End</ns1:SubtitleAdditionSearchType>
+     <ns1:Category>Cat</ns1:Category>
+     <ns1:CategorySearchType>Exact</ns1:CategorySearchType>
+     <ns1:SubCategory>Subcat</ns1:SubCategory>
+     <ns1:SubCategorySearchType>Exact</ns1:SubCategorySearchType>
+    </ns1:filter>
+   </ns1:getAllEvents>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

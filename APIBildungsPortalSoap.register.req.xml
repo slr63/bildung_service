@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns1="http://www.lsb-niedersachsen.de/bildungsportal/api/">
+ <SOAP-ENV:Body>
+   <ns1:register>
+    <ns1:registrationData>
+     <ns1:Events>
+      <ns1:Id>0</ns1:Id>
+      <ns1:WorkshopIds>0</ns1:WorkshopIds>
+      <ns1:WorkshopComment></ns1:WorkshopComment>
+     </ns1:Events>
+     <ns1:Salutation></ns1:Salutation>
+     <ns1:Title></ns1:Title>
+     <ns1:Firstname></ns1:Firstname>
+     <ns1:Lastname></ns1:Lastname>
+     <ns1:Street></ns1:Street>
+     <ns1:Zip></ns1:Zip>
+     <ns1:City></ns1:City>
+     <ns1:DateOfBirth></ns1:DateOfBirth>
+     <ns1:AccountHolder></ns1:AccountHolder>
+     <ns1:IBAN></ns1:IBAN>
+     <ns1:BIC></ns1:BIC>
+     <ns1:EMail></ns1:EMail>
+     <ns1:Phone></ns1:Phone>
+     <ns1:MobilePhone></ns1:MobilePhone>
+     <ns1:AssociationNumber></ns1:AssociationNumber>
+     <ns1:Association></ns1:Association>
+     <ns1:YouthLeaderCard></ns1:YouthLeaderCard>
+     <ns1:YouthLeaderCardValidity></ns1:YouthLeaderCardValidity>
+     <ns1:Comment></ns1:Comment>
+     <ns1:Overnight>false</ns1:Overnight>
+     <ns1:SingleRoom>false</ns1:SingleRoom>
+     <ns1:Vegetarian>false</ns1:Vegetarian>
+     <ns1:AddressDisclosure>false</ns1:AddressDisclosure>
+    </ns1:registrationData>
+   </ns1:register>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

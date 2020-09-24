@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.lsb-niedersachsen.de/bildungsportal/api/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.lsb-niedersachsen.de/bildungsportal/api/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.lsb-niedersachsen.de/bildungsportal/api/">
+      <s:element name="dumpTableFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tableName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="dumpTableFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dumpTableFieldsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAllEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="filter" nillable="true" type="tns:EventFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EventFilter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OrganizerId" nillable="true" type="s:unsignedInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="VenueId" nillable="true" type="s:unsignedInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="KSBNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LSBNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SportRegion" type="s:unsignedInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="OnlyVisible" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="OnlyWithEducationalLeave" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TitleSearchType" type="tns:SearchType" />
+          <s:element minOccurs="0" maxOccurs="1" name="TitleAddition" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TitleAdditionSearchType" type="tns:SearchType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subtitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubtitleSearchType" type="tns:SearchType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubtitleAddition" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubtitleAdditionSearchType" type="tns:SearchType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategorySearchType" type="tns:SearchType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubCategory" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubCategorySearchType" type="tns:SearchType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SearchType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Exact" />
+          <s:enumeration value="Start" />
+          <s:enumeration value="Middle" />
+          <s:enumeration value="End" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="getAllEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="getAllEventsResult" type="tns:EventMini" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EventMini">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EventBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Title" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TitleAddition" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Subtitle" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SubtitleAddition" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Category" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SubCategory" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="VenueCity" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OccupancyPercentage" type="s:unsignedByte" />
+              <s:element minOccurs="1" maxOccurs="1" name="EducationalLeave" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="SubEvents" type="tns:EventBase" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EventBase">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Hidden" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="Number" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="KSBNumber" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LSBNumber" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SportRegion" nillable="true" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getSingleEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:unsignedInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSingleEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getSingleEventResult" type="tns:Event" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Event">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EventMini">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="EventFees" type="tns:EventFee" />
+              <s:element minOccurs="1" maxOccurs="1" name="Profile" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Acknowledgement" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TargetGroup" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="NumberOfLearnUnits" type="s:unsignedInt" />
+              <s:element minOccurs="0" maxOccurs="1" name="Venue" type="tns:Address" />
+              <s:element minOccurs="1" maxOccurs="1" name="VenueIsHandicappedAccessible" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Organizer" nillable="true" type="tns:Address" />
+              <s:element minOccurs="1" maxOccurs="1" name="InfoText" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="InfoText2" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="InfoText3" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="InfoText4" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="InfoURL" nillable="true" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxNumberOfWorkshopRegistrations" nillable="true" type="s:unsignedInt" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="WorkshopTimeslots" type="tns:WorkshopTimeslot" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EventFee">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fee" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Name" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Street" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Zip" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="City" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Contact" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fax" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MobilePhone" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EMail" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WorkshopTimeslot">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Timeslot" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Workshops" type="tns:Workshop" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Workshop">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="Number" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Title" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AdditionalInfo" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeFrom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeTo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OccupancyPercentage" type="s:unsignedByte" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="register">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="registrationData" type="tns:EventRegistration" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EventRegistration">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Events" type="tns:EventRegistrationEvent" />
+          <s:element minOccurs="1" maxOccurs="1" name="Salutation" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Title" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Firstname" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Lastname" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Street" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Zip" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="City" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountHolder" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IBAN" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BIC" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EMail" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Phone" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MobilePhone" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AssociationNumber" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Association" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="YouthLeaderCard" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="YouthLeaderCardValidity" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Comment" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Overnight" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SingleRoom" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Vegetarian" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressDisclosure" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EventRegistrationEvent">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:unsignedInt" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WorkshopIds" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="WorkshopComment" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="registerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="registerResult" type="tns:EventRegistrationWarning" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EventRegistrationWarning">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:unsignedInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="code" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="warningMessage" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="additionalData" type="tns:KeyValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KeyValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="dumpTableFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:dumpTableFields" />
+  </wsdl:message>
+  <wsdl:message name="dumpTableFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:dumpTableFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:getAllEvents" />
+  </wsdl:message>
+  <wsdl:message name="getAllEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:getAllEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSingleEventSoapIn">
+    <wsdl:part name="parameters" element="tns:getSingleEvent" />
+  </wsdl:message>
+  <wsdl:message name="getSingleEventSoapOut">
+    <wsdl:part name="parameters" element="tns:getSingleEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="registerSoapIn">
+    <wsdl:part name="parameters" element="tns:register" />
+  </wsdl:message>
+  <wsdl:message name="registerSoapOut">
+    <wsdl:part name="parameters" element="tns:registerResponse" />
+  </wsdl:message>
+  <wsdl:portType name="APIBildungsPortalSoap">
+    <wsdl:operation name="dumpTableFields">
+      <wsdl:input message="tns:dumpTableFieldsSoapIn" />
+      <wsdl:output message="tns:dumpTableFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllEvents">
+      <wsdl:input message="tns:getAllEventsSoapIn" />
+      <wsdl:output message="tns:getAllEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getSingleEvent">
+      <wsdl:input message="tns:getSingleEventSoapIn" />
+      <wsdl:output message="tns:getSingleEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="register">
+      <wsdl:input message="tns:registerSoapIn" />
+      <wsdl:output message="tns:registerSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="APIBildungsPortalSoap" type="tns:APIBildungsPortalSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="dumpTableFields">
+      <soap:operation soapAction="http://www.lsb-niedersachsen.de/bildungsportal/api/dumpTableFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllEvents">
+      <soap:operation soapAction="http://www.lsb-niedersachsen.de/bildungsportal/api/getAllEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSingleEvent">
+      <soap:operation soapAction="http://www.lsb-niedersachsen.de/bildungsportal/api/getSingleEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="register">
+      <soap:operation soapAction="http://www.lsb-niedersachsen.de/bildungsportal/api/register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIBildungsPortalSoap12" type="tns:APIBildungsPortalSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="dumpTableFields">
+      <soap12:operation soapAction="http://www.lsb-niedersachsen.de/bildungsportal/api/dumpTableFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllEvents">
+      <soap12:operation soapAction="http://www.lsb-niedersachsen.de/bildungsportal/api/getAllEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSingleEvent">
+      <soap12:operation soapAction="http://www.lsb-niedersachsen.de/bildungsportal/api/getSingleEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="register">
+      <soap12:operation soapAction="http://www.lsb-niedersachsen.de/bildungsportal/api/register" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="APIBildungsPortal">
+    <wsdl:port name="APIBildungsPortalSoap" binding="tns:APIBildungsPortalSoap">
+      <soap:address location="http://10.20.7.90/LSB_Test/APIBildungsPortal.asmx" />
+    </wsdl:port>
+    <wsdl:port name="APIBildungsPortalSoap12" binding="tns:APIBildungsPortalSoap12">
+      <soap12:address location="http://10.20.7.90/LSB_Test/APIBildungsPortal.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+    xmlns:SOAP-ENV="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:SOAP-ENC="http://www.w3.org/2003/05/soap-encoding"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ns1="http://www.lsb-niedersachsen.de/bildungsportal/api/">
+ <SOAP-ENV:Body>
+  <ns1:registerResponse>
+   <ns1:registerResult>
+    <ns1:eventId>0</ns1:eventId>
+    <ns1:code></ns1:code>
+    <ns1:warningMessage></ns1:warningMessage>
+    <ns1:additionalData>
+     <ns1:key></ns1:key>
+     <ns1:value></ns1:value>
+    </ns1:additionalData>
+   </ns1:registerResult>
+  </ns1:registerResponse>
+ </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
